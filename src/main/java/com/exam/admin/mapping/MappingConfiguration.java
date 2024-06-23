@@ -10,4 +10,6 @@ public class MappingConfiguration {
 
     @Bean
     public ExamDetailMapper examDetailMapper() {return new ExamDetailMapper();}
+    @Bean
+    public StudentExamMapper studentExamMapper() {return new StudentExamMapper();}
 }
