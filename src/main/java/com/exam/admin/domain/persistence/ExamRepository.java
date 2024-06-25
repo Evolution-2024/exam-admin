@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface ExamRepository extends JpaRepository<Exam, Long> {
     @Query(value = "select g from Exam g " +
@@ -22,4 +24,5 @@ public interface ExamRepository extends JpaRepository<Exam, Long> {
             @Param("courseCode") Long courseCode,
             Pageable pageable
     );
+    Optional<Exam> findByTopicCodeAndSectionCodeAndCourseCode(Long topicCode, Long sectionCode, Long courseCode);
 }

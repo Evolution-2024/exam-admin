@@ -48,7 +48,10 @@ public class ExamServiceImpl implements ExamService {
         Set<ConstraintViolation<Exam>> violations = validator.validate(exam);
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
-
+        examRepository.findByTopicCodeAndSectionCodeAndCourseCode(topicId, sectionId, courseId)
+                .ifPresent(item -> {
+                    this.delete(item.getId());
+                });
         return examRepository.save(exam);
     }
 
